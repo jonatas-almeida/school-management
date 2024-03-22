@@ -5,6 +5,7 @@ import { DividerComponent } from '../../components/divider/divider.component';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { ButtonComponent } from '../../components/button/button.component';
+import { SchoolService } from '../../services/school.service';
 
 @Component({
   selector: 'app-home',
@@ -37,10 +38,14 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(private schoolService: SchoolService) {}
 
   ngOnInit(): void {
       
+  }
+
+  async getAllSchools(): Promise<void> {
+    
   }
 
   showSchoolDetails(index: number) {
