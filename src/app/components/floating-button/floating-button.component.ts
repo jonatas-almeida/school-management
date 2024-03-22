@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -9,5 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './floating-button.component.scss'
 })
 export class FloatingButtonComponent {
-
+  // Propriedades do componente
+  @Output() onClick = new EventEmitter();
 }

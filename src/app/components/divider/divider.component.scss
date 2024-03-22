@@ -1,0 +1,11 @@
+$divider-background-color: #e2e2e2;
+
+.divider {
+    width: 100%;
+    height: 1px;
+
+    border: none;
+    background-color: $divider-background-color;
+
+    margin: 10px 0px;
+}
