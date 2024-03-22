@@ -39,6 +39,7 @@ $home-header-title-subtext-color: #FFA500;
 
     .home-content-container {
         .home-content-title {
+            font-size: 16pt;
             font-weight: 600;
         }
 
@@ -53,18 +54,50 @@ $home-header-title-subtext-color: #FFA500;
             .home-content-wrapper {
                 width: 100%;
                 display: flex;
-                align-items: center;
-                justify-content: space-between;
+                flex-direction: column;
+                align-items: flex-start;
 
                 .home-content-school-info {
                     h3 {
                         font-size: 16pt;
                         font-weight: 600;
+                        color: $home-header-title-color;
                     }
 
                     p  {
                         font-size: 14pt;
                     }
+                }
+
+                .home-content-details {
+                    width: 100%;
+
+                    label {
+                        font-weight: 600;
+                        color: $home-header-title-subtext-color;
+                    }
+
+                    .home-info-list {
+                        list-style: none;
+                        margin-top: 20px;
+
+                        .list-item {
+                            font-size: 14pt;
+
+                            span {
+                                font-size: 14pt;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+
+                .home-info-buttons {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin-top: 30px;
                 }
             }
         }
