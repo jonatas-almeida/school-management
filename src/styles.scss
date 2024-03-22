@@ -22,6 +22,10 @@ body {
     height: 100%;
 }
 
+body {
+    background-color: $app-background-color;
+}
+
 .app-container {
     width: 100%;
     height: 100%;
@@ -33,8 +37,4 @@ body {
         margin: 0 auto;
         padding: 40px 20px;
     }
-}
-html,
-body {
-    height: 100%;
 }

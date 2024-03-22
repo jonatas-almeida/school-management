@@ -13,13 +13,27 @@ import { ButtonComponent } from '../../components/button/button.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
+
 
   schoolsArray = [
     {
       id: 1,
       label: "Nome da escola",
-      address: "Endereço da escola"
+      address: "Endereço da escola",
+      showDetails: false
+    },
+    {
+      id: 2,
+      label: "Nome da escola",
+      address: "Endereço da escola",
+      showDetails: false
+    },
+    {
+      id: 3,
+      label: "Nome da escola",
+      address: "Endereço da escola",
+      showDetails: false
     }
   ];
 
@@ -27,6 +41,17 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
       
+  }
+
+  showSchoolDetails(index: number) {
+    if(this.schoolsArray) {
+      if(this.schoolsArray[index].showDetails) {
+        this.schoolsArray[index].showDetails = false;
+      }
+      else {
+        this.schoolsArray[index].showDetails = true;
+      }
+    }
   }
 
 }
