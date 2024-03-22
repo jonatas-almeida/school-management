@@ -1,0 +1,8 @@
+<button 
+    class="button-container {{ this.kind }}"
+    (click)="this.onClick.emit($event)">
+    {{ this.buttonLabel }}
+    <mat-icon *ngIf="this.icon">
+        {{ this.icon }}
+    </mat-icon>
+</button>

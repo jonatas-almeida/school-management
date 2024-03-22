@@ -1,1 +1,51 @@
-<p>home works!</p>
+<div class="home-container">
+    <app-card>
+        <div class="home-header-container">
+            <h1 class="home-header-title"><span>Cad</span>Escola</h1>
+            <div class="home-searchbar-container">
+                <app-input placeholder="Pesquisar..."></app-input>
+            </div>
+        </div>
+    </app-card>
+
+    <app-card>
+        <div class="home-content-container">
+            <h2 class="home-content-title">Escolas cadastradas</h2>
+            <app-divider></app-divider>
+
+            <!-- Caso não haja nehuma escola cadastrada -->
+            <div class="home-content-not-found" *ngIf="!this.schoolsArray.length">
+                <label>Nenhuma escola cadastrada</label>
+            </div>
+
+            <div class="home-content-schools-data" *ngIf="this.schoolsArray.length">
+                <app-card>
+                    <div class="home-content-wrapper">
+                        <div class="home-content-school-info">
+                            <h3>Escola Menino Jesus</h3>
+                            <p>62.172.017/0001-83</p>
+                        </div>
+                        <div class="home-content-details">
+                            <app-divider></app-divider>
+                            <label>Informações da escola</label>
+                            <ul class="home-info-list">
+                                <li class="list-item"><span>Endereço:</span> Av. Teste de Oliveira, 197 </li>
+                                <li class="list-item"><span>Horário de funcionamento:</span> 9:00h às 22:00h </li>
+                                <li class="list-item"><span>Contato:</span> (81) 91111-1111 </li>
+                                <li class="list-item"><span>Direção:</span> Rosilda Rocha </li>
+                            </ul>
+                            <div class="home-info-buttons">
+                                <app-button buttonLabel="Cadastrar turma" icon="add"></app-button>
+                                <app-button buttonLabel="Alterar informações" icon="edit"></app-button>
+                                <app-button buttonLabel="Excluir" kind="secondary" icon="delete"></app-button>
+                            </div>
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+        </div>
+    </app-card>
+</div>
+
+<!-- Modal de cadastro e edição -->
+<app-modal title="Cadastrar escola"></app-modal>

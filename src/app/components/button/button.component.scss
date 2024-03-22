@@ -1,0 +1,46 @@
+// Button - primary
+$button-background-color: #1B4965;
+$button-background-color-hover: #132c3b;
+$button-text-color: #FFFFFF;
+
+// Button - secondary
+$button-secondary-background-color: #FFFFFF;
+$button-secondary-background-color-hover: #e7e7e7;
+$button-secondary-text-color: #1B4965;
+
+.button-container {
+    width: 100%;
+    max-width: fit-content;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14pt;
+    font-weight: 800;
+    text-align: center;
+    cursor: pointer;
+
+    transition: all .2s;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+
+    &.primary {
+        background-color: $button-background-color;
+        color: $button-text-color;
+
+        &:hover {
+            background-color: $button-background-color-hover;
+        }
+    }
+
+    &.secondary {
+        background-color: $button-secondary-background-color;
+        color: $button-secondary-text-color;
+        
+        &:hover {
+            background-color: $button-secondary-background-color-hover;
+        }
+    }
+}

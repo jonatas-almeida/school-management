@@ -1,1 +1,20 @@
-<p>input works!</p>
+<div class="input-container">
+    <label 
+        *ngIf="this.label"
+        class="input-label">
+        {{ this.label }}
+    </label>
+    <div class="input-wrapper">
+        <input 
+            class="input-component" 
+            [placeholder]="this.placeholder"
+            (click)="this.onClick.emit($event)"
+            (change)="this.onChange.emit($event)"
+            (blur)="this.onBlur.emit($event)"
+            (input)="this.onInput.emit($event)" />
+            
+        <button class="input-search-button">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+</div>
