@@ -72,15 +72,16 @@ export class HomeComponent implements OnInit {
     this.getAllClasses();
   }
 
+  // Retorna todas as escolas
   async getAllSchools(): Promise<void> {
     this.schoolService.getAllSchools().subscribe((res) => {
       this.schoolsArray = res.reverse();
-      console.log(this.schoolsArray);
     }, error => {
       console.log(error);
     });
   }
 
+  // Retorna todas as turmas
   async getAllClasses(): Promise<void> {
     this.schoolService.getAllClasses().subscribe((res) => {
       this.schoolClassArray = res.reverse();
@@ -89,6 +90,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // Cadastra uma nova turma
   async registerNewClass(): Promise<void> {
     Object.assign(this.schoolClassForm.value, {
       id: Math.floor(Math.random() * 10000),
@@ -103,6 +105,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // Cadastra uma nova escola
   async registerNewSchool(): Promise<void> {
     Object.assign(this.schoolsForm.value, {
       id: Math.floor(Math.random() * 10000),
@@ -134,6 +137,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // Abre o modal de visualização das turmas cadastradas
   openClassesView(schoolId: number): void {
     this.schoolId = schoolId;
     this.isModalClassOpenView = true;
@@ -147,6 +151,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Edita as informações da escola
   async editSchool(): Promise<void> {
     this.schoolService.editSchool(this.schoolsForm.value, this.schoolsForm.get("id")?.value).subscribe(() => {
       this.getAllSchools();
@@ -158,6 +163,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // Deleta a escola
   async deleteSchool(): Promise<void> {
     this.schoolService.deleteSchool(this.schoolDeleteId).subscribe(() => {
       this.getAllSchools();
@@ -167,11 +173,13 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // Abre o modal para criar a classe
   openModalAddClass(schoolRef: School): void {
     this.schoolClassId = schoolRef.id;
     this.isModalClassOpen = true;
   }
 
+  // Abre o modal de edição da escola
   openModalEdit(school: School): void {
     this.modalTitle = "Alterar informações";
     this.isEditing = true;
@@ -190,12 +198,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Abre o modal de confirmação de exclusão da escola
   openModalConfirmation(id: number, schoolName: string) {
     this.schoolDeleteId = id;
     this.schoolDeleteName = schoolName;
     this.isModalConfirmationOpen = true;
   }
 
+  // Mosta e esconde os detalhes da escola
   showSchoolDetails(index: number) {
     if(this.schoolsArray) {
       if(this.schoolsArray[index].showDetails) {
