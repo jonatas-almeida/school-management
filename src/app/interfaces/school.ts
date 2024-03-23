@@ -1,9 +1,11 @@
 export interface School {
-    id?: number;
+    id: number;
     schoolName: string;
     schoolDescription: string;
-    schoolAdress: string;
+    schoolDocument: string;
+    schoolAddress: string;
     schoolSchedule: string;
     schoolContact: string;
     schoolDirector: string;
+    showDetails: boolean;
 }

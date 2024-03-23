@@ -15,8 +15,8 @@ export class SchoolService {
 
   // --- ESCOLA --- //
   // Retorna todas as escolas cadastradas
-  public getAllSchools(): Observable<School> {
-    return this.http.get<School>(`${this.baseUrl}/school`);
+  public getAllSchools(): Observable<School[]> {
+    return this.http.get<School[]>(`${this.baseUrl}/school`);
   }
 
   // Retorna uma escola específica
@@ -31,18 +31,18 @@ export class SchoolService {
 
   // Edita uma escola cadastrada
   public editSchool(payload: School, id: number): Observable<School> {
-    return this.http.post<School>(`${this.baseUrl}/school/${id}`, payload);
+    return this.http.put<School>(`${this.baseUrl}/school/${id}`, payload);
   }
 
   // Deleta a escola do respectivo ID
-  public deleteSchool(id: number): Observable<School> {
-    return this.http.delete<School>(`${this.baseUrl}/school/${id}`);
+  public deleteSchool(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/school/${id}`);
   }
 
   // --- CLASSES --- //
   // Retorna todas as classes
-  public getAllClasses(): Observable<SchoolClass> {
-    return this.http.get<SchoolClass>(`${this.baseUrl}/school-classes`);
+  public getAllClasses(): Observable<SchoolClass[]> {
+    return this.http.get<SchoolClass[]>(`${this.baseUrl}/school-classes`);
   }
 
   // Retorna uma classe de uma escola específica

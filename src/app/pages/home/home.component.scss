@@ -121,3 +121,64 @@ $home-header-title-subtext-color: #FFA500;
         }
     }
 }
+
+.form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    justify-content: flex-start;
+    gap: 10px;
+
+    .form-field-section {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .form-action-buttons {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        margin-top: 20px;
+    }
+}
+
+.school-delete-name {
+    font-weight: 600;
+}
+
+.registered-classes-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .classes-container {
+        display: flex;
+        flex-direction: column;
+        align-items: normal;
+        justify-content: flex-start;
+        gap: 10px;
+
+        h3 {
+            font-weight: 600;
+        }
+    
+        .class-description {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.modal-action-buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
