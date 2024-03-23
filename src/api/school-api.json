@@ -1,0 +1,44 @@
+{
+  "school": [
+    {
+      "id": "6687",
+      "schoolName": "Escola Tarcísio Freitas",
+      "schoolDescription": "",
+      "schoolAddress": "Av. Oliveira Teste, 155",
+      "schoolDocument": "39.038.535/0001-97",
+      "schoolSchedule": "7:00 às 22:00",
+      "schoolContact": "(81) 91111-1111",
+      "schoolDirector": "Júlio César II",
+      "showDetails": false
+    },
+    {
+      "id": 8434,
+      "schoolName": "Escola Menino Jesus",
+      "schoolDescription": "",
+      "schoolAddress": "Av. Teste, 200",
+      "schoolDocument": "47.184.329/0001-13",
+      "schoolSchedule": "8:00 às 23:00",
+      "schoolContact": "(81) 91111-1111",
+      "schoolDirector": "Romulo Eduardo",
+      "showDetails": false
+    }
+  ],
+  "school-classes": [
+    {
+      "id": 8116,
+      "schoolId": "6687",
+      "schoolClassName": "5a Série - A",
+      "schoolClassDescription": "5a Série A, manhã",
+      "schoolClassQuantity": "25",
+      "schoolClassYear": "2024"
+    },
+    {
+      "id": 491,
+      "schoolId": "6687",
+      "schoolClassName": "Turma teste",
+      "schoolClassDescription": "Turma de teste para o projeto",
+      "schoolClassQuantity": "10",
+      "schoolClassYear": "2024"
+    }
+  ]
+}

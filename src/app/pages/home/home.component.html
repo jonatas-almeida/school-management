@@ -1,12 +1,14 @@
 <div class="home-container">
-    <app-card>
-        <div class="home-header-container">
-            <h1 class="home-header-title"><span>Cad</span>Escola</h1>
-            <div class="home-searchbar-container">
-                <app-input placeholder="Pesquisar..."></app-input>
+    <div class="home-header-container-wrapper">
+        <app-card>
+            <div class="home-header-container">
+                <h1 class="home-header-title"><span>Cad</span>Escola</h1>
+                <div class="home-searchbar-container">
+                    <app-input placeholder="Pesquisar..." kind="searchbar"></app-input>
+                </div>
             </div>
-        </div>
-    </app-card>
+        </app-card>
+    </div>
 
     <app-card>
         <div class="home-content-container">
@@ -19,25 +21,34 @@
             </div>
 
             <div class="home-content-schools-data" *ngIf="this.schoolsArray.length">
-                <app-card>
+                <app-card 
+                    *ngFor="let school of this.schoolsArray; index as index;">
                     <div class="home-content-wrapper">
                         <div class="home-content-school-info">
-                            <h3>Escola Menino Jesus</h3>
-                            <p>62.172.017/0001-83</p>
+                            <div>
+                                <h3>{{ school.schoolName }}</h3>
+                                <p>{{ school.schoolDocument }}</p>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <app-button buttonLabel="Turmas cadastradas" (onClick)="this.openClassesView(school.id)"></app-button>
+                                <app-button buttonLabel="Ver detalhes" kind="secondary" (onClick)="this.showSchoolDetails(index)"></app-button>
+                            </div>
                         </div>
-                        <div class="home-content-details">
+                        <div class="home-content-details" *ngIf="school.showDetails">
                             <app-divider></app-divider>
                             <label>Informações da escola</label>
                             <ul class="home-info-list">
-                                <li class="list-item"><span>Endereço:</span> Av. Teste de Oliveira, 197 </li>
-                                <li class="list-item"><span>Horário de funcionamento:</span> 9:00h às 22:00h </li>
-                                <li class="list-item"><span>Contato:</span> (81) 91111-1111 </li>
-                                <li class="list-item"><span>Direção:</span> Rosilda Rocha </li>
+                                <li class="list-item">{{ school.schoolDescription }}</li>
+                                <li class="list-item"><span>Endereço:</span> {{ school.schoolAddress }} </li>
+                                <li class="list-item"><span>Horário de funcionamento:</span> {{ school.schoolSchedule }} </li>
+                                <li class="list-item"><span>Contato:</span> {{ school.schoolContact }} </li>
+                                <li class="list-item"><span>Direção:</span> {{ school.schoolDirector }} </li>
                             </ul>
                             <div class="home-info-buttons">
-                                <app-button buttonLabel="Cadastrar turma" icon="add"></app-button>
-                                <app-button buttonLabel="Alterar informações" icon="edit"></app-button>
-                                <app-button buttonLabel="Excluir" kind="secondary" icon="delete"></app-button>
+                                <app-button buttonLabel="Alterar informações da escola" icon="edit" (onClick)="this.openModalEdit(school)"></app-button>
+                                <app-button buttonLabel="Cadastrar turma" icon="add" (onClick)="this.openModalAddClass(school)"></app-button>
+                                <app-button buttonLabel="Excluir" kind="secondary" icon="delete" (onClick)="this.openModalConfirmation(school.id, school.schoolName)"></app-button>
                             </div>
                         </div>
                     </div>
@@ -47,5 +58,89 @@
     </app-card>
 </div>
 
-<!-- Modal de cadastro e edição -->
-<app-modal title="Cadastrar escola"></app-modal>
+<!-- Modal de cadastro e edição da escola -->
+<app-modal 
+    [title]="this.modalTitle"
+    [modalOpen]="this.isModalOpen"
+    (onClose)="this.isModalOpen = false; this.modalTitle = 'Cadastrar escola'; this.schoolsForm.reset(); this.isEditing = false;">
+    <form class="form-container" [formGroup]="this.schoolsForm">
+        <div class="form-field-section">
+            <app-input label="Nome da escola" formControlName="schoolName"></app-input>
+            <app-input label="CNPJ" formControlName="schoolDocument"></app-input>
+        </div>
+        <app-input label="Endereço" formControlName="schoolAddress"></app-input>
+        <div class="form-field-section">
+            <app-input label="Horário de funcionamento" formControlName="schoolSchedule"></app-input>
+            <app-input label="Contato" formControlName="schoolContact"></app-input>
+        </div>
+        <app-input label="Diretor" formControlName="schoolDirector"></app-input>
+        
+        <div class="form-action-buttons">
+            <app-button buttonLabel="Salvar" icon="check" (onClick)="this.isEditing ? this.editSchool() : this.registerNewSchool()"></app-button>
+            <app-button buttonLabel="Cancelar" kind="secondary" icon="close" (onClick)="this.isModalOpen = false; this.modalTitle = 'Cadastrar escola'; this.schoolsForm.reset();"></app-button>
+        </div>
+    </form>
+</app-modal>
+
+<!-- Cadastrar turma -->
+<app-modal 
+    title="Cadastrar turma"
+    [modalOpen]="this.isModalClassOpen"
+    (onClose)="this.isModalClassOpen = false; this.modalTitle = 'Cadastrar escola'; this.schoolsForm.reset(); this.isEditing = false;">
+    <form class="form-container" [formGroup]="this.schoolClassForm">
+        <div class="form-field-section">
+            <app-input label="Nome da turma" formControlName="schoolClassName"></app-input>
+            <app-input label="Quantidade de alunos" formControlName="schoolClassQuantity"></app-input>
+        </div>
+        <app-input label="Descrição da turma" formControlName="schoolClassDescription"></app-input>
+        <div class="form-field-section">
+            <app-input label="Ano da turma" formControlName="schoolClassYear"></app-input>
+        </div>
+        
+        <div class="form-action-buttons">
+            <app-button buttonLabel="Salvar" icon="check" (onClick)="this.registerNewClass()"></app-button>
+            <app-button buttonLabel="Cancelar" kind="secondary" icon="close" (onClick)="this.isModalClassOpen = false; this.modalTitle = 'Cadastrar escola'; this.schoolsForm.reset();"></app-button>
+        </div>
+    </form>
+</app-modal>
+
+<!-- Turmas cadastradas -->
+<app-modal 
+    title="Turmas cadastradas"
+    [modalOpen]="this.isModalClassOpenView"
+    (onClose)="this.isModalClassOpenView = false; this.isEditing = false; this.schoolFilterClassArray = [];">
+    <div class="registered-classes-container">
+        <app-card *ngFor="let class of this.schoolFilterClassArray; index as index;">
+            <div class="classes-container">
+                <div>
+                    <h3>{{ class.schoolClassName }} | {{ class.schoolClassYear }}</h3>
+                    <p class="class-description">{{ class.schoolClassDescription }}</p>
+                    <p>{{ class.schoolClassQuantity }} alunos</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <app-button buttonLabel="Alterar informações" icon="edit"></app-button>
+                    <app-button buttonLabel="Deletar" kind="secondary" icon="delete"></app-button>
+                </div>
+            </div>
+        </app-card>
+        <div *ngIf="!this.schoolFilterClassArray">
+            Nenhuma turma cadastrada
+        </div>
+    </div>
+</app-modal>
+
+
+<!-- Modal de confirmação de exclusão -->
+<app-modal
+    [modalOpen]="isModalConfirmationOpen"
+    (onClose)="this.isModalConfirmationOpen = false"
+    title="Excluir escola">
+    <p>Você realmente quer excluir a escola: <span class="school-delete-name">{{ this.schoolDeleteName }}</span></p>
+
+    <div class="modal-action-buttons">
+        <app-button buttonLabel="Confirmar" icon="check" (onClick)="this.deleteSchool()"></app-button>
+        <app-button buttonLabel="Cancelar" kind="secondary" icon="close" (onClick)="this.isModalConfirmationOpen = false"></app-button>
+    </div>
+</app-modal>
+
+<app-floating-button (onClick)="this.isModalOpen = true"></app-floating-button>

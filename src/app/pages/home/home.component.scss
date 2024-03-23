@@ -1,4 +1,5 @@
 $home-header-title-color: #858585;
+$home-card-title: #1B4965;
 $home-header-title-subtext-color: #FFA500;
 
 .home-container {
@@ -11,6 +12,13 @@ $home-header-title-subtext-color: #FFA500;
     justify-content: flex-start;
     gap: 20px;
 
+    .home-header-container-wrapper {
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+
     .home-header-container {
         width: 100%;
 
@@ -21,7 +29,7 @@ $home-header-title-subtext-color: #FFA500;
         flex-wrap: wrap;
 
         .home-header-title {
-            font-size: 24pt;
+            font-size: 28pt;
             font-weight: 800;
             color: $home-header-title-color;
 
@@ -49,7 +57,7 @@ $home-header-title-subtext-color: #FFA500;
             flex-direction: column;
             align-items: normal;
             justify-content: flex-start;
-            gap: 10px;
+            gap: 20px;
 
             .home-content-wrapper {
                 width: 100%;
@@ -58,10 +66,15 @@ $home-header-title-subtext-color: #FFA500;
                 align-items: flex-start;
 
                 .home-content-school-info {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    
                     h3 {
                         font-size: 16pt;
                         font-weight: 600;
-                        color: $home-header-title-color;
+                        color: $home-card-title;
                     }
 
                     p  {
@@ -79,7 +92,7 @@ $home-header-title-subtext-color: #FFA500;
 
                     .home-info-list {
                         list-style: none;
-                        margin-top: 20px;
+                        margin-top: 10px;
 
                         .list-item {
                             font-size: 14pt;
@@ -89,6 +102,10 @@ $home-header-title-subtext-color: #FFA500;
                                 font-weight: 600;
                             }
                         }
+
+                        .list-item:nth-child(1) {
+                            margin-bottom: 20px;
+                        }
                     }
                 }
 
@@ -96,10 +113,72 @@ $home-header-title-subtext-color: #FFA500;
                     width: 100%;
                     display: flex;
                     align-items: center;
+                    flex-wrap: wrap;
                     gap: 10px;
                     margin-top: 30px;
                 }
             }
         }
     }
+}
+
+.form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    justify-content: flex-start;
+    gap: 10px;
+
+    .form-field-section {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .form-action-buttons {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        margin-top: 20px;
+    }
+}
+
+.school-delete-name {
+    font-weight: 600;
+}
+
+.registered-classes-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .classes-container {
+        display: flex;
+        flex-direction: column;
+        align-items: normal;
+        justify-content: flex-start;
+        gap: 10px;
+
+        h3 {
+            font-weight: 600;
+        }
+    
+        .class-description {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.modal-action-buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
 }

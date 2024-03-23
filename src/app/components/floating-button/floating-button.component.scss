@@ -10,9 +10,9 @@ $floating-button-shadow: 0px 0px 15px rgba($color: #000, $alpha: 0.2);
     border-radius: 50%;
     box-shadow: $floating-button-shadow;
 
-    position: absolute;
-    bottom: 60px;
-    right: 80px;
+    position: fixed;
+    bottom: 40px;
+    right: 60px;
 
     transition: all .2s;
 

@@ -8,12 +8,12 @@
         <input 
             class="input-component" 
             [placeholder]="this.placeholder"
+            [value]="this.value ?? ''"
             (click)="this.onClick.emit($event)"
-            (change)="this.onChange.emit($event)"
             (blur)="this.onBlur.emit($event)"
-            (input)="this.onInput.emit($event)" />
+            (input)="this.onInputChange($event)" />
             
-        <button class="input-search-button">
+        <button class="input-search-button" *ngIf="this.kind === 'searchbar'">
             <mat-icon>search</mat-icon>
         </button>
     </div>
